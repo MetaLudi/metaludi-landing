@@ -74,7 +74,7 @@ const snsServices = {
     description: "블로그에서 MetaLudi의 활동 기록과 콘텐츠를 확인하세요.",
     url: "https://blog.naver.com/tiara1122",
     qr: "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Fblog.naver.com%2Ftiara1122",
-    image: "images/blog_card.png",
+    image: "blog_card.png",
     button: "네이버 블로그 바로가기"
   },
   instagram: {
