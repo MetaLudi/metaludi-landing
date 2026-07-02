@@ -73,7 +73,7 @@ const snsServices = {
     title: "네이버 블로그",
     description: "블로그에서 MetaLudi의 활동 기록과 콘텐츠를 확인하세요.",
     url: "https://blog.naver.com/tiara1122",
-    qr: "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Fblog.naver.com%2Ftiara1122",
+    qr: "images/blog_qr.png",
     image: "images/blog_card.png",
     button: "네이버 블로그 바로가기"
   },
@@ -105,7 +105,7 @@ const snsServices = {
     title: "카카오톡 문의",
     description: "톡톡루디 | MetaLudi 질문방으로 연결됩니다. PC에서 참여 버튼이 열리지 않으면 휴대폰 카카오톡으로 QR을 스캔하거나, 링크를 복사해 카카오톡에서 열어주세요.",
     url: "https://open.kakao.com/o/stVR36Bi",
-    qr: "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Fopen.kakao.com%2Fo%2FstVR36Bi",
+    qr: "images/openchat_qr.png",
     button: "오픈채팅방 바로가기"
   },
   email: {
@@ -314,8 +314,21 @@ document.querySelectorAll("[data-copy-email]").forEach((button) => {
   button.addEventListener("click", (event) => {
     event.preventDefault();
     const emailAddress = button.dataset.copyEmail;
-    const originalText = button.textContent;
     copyTextToClipboard(emailAddress);
+
+    const statusText = button.querySelector(".contact-card-caption em, small");
+    if (statusText) {
+      const originalText = statusText.dataset.originalText || statusText.textContent;
+      statusText.dataset.originalText = originalText;
+      statusText.textContent = "이메일 주소가 복사되었습니다";
+
+      window.setTimeout(() => {
+        statusText.textContent = originalText;
+      }, 1800);
+      return;
+    }
+
+    const originalText = button.textContent;
     button.textContent = "이메일 주소가 복사되었습니다";
 
     window.setTimeout(() => {
@@ -351,4 +364,6 @@ document.querySelectorAll(".section-card-image").forEach((image) => {
 
   updateCardImageState();
 });
+
+
 
